@@ -36,6 +36,7 @@ type Props = {
   onLinkToolbarOpen: () => void;
   onClose: () => void;
   embeds: EmbedDescriptor[];
+  blocks?: MenuItem[];
 };
 
 type State = {
@@ -291,11 +292,17 @@ class BlockMenu extends React.Component<Props, State> {
   insertBlock(item) {
     this.clearSearch();
 
-    const command = this.props.commands[item.name];
-    if (command) {
-      command(item.attrs);
+    console.log(item)
+
+    if (item.onClick) {
+      item.onClick({ commands: this.props.commands });
     } else {
-      this.props.commands[`create${capitalize(item.name)}`](item.attrs);
+      const command = this.props.commands[item.name];
+      if (command) {
+        command(item.attrs);
+      } else {
+        this.props.commands[`create${capitalize(item.name)}`](item.attrs);
+      }
     }
 
     this.props.onClose();
@@ -390,7 +397,9 @@ class BlockMenu extends React.Component<Props, State> {
       uploadImage,
       commands,
     } = this.props;
-    let items: (EmbedDescriptor | MenuItem)[] = getMenuItems(dictionary);
+    let items: (EmbedDescriptor | MenuItem)[] = this.props.blocks
+      ? this.props.blocks
+      : getMenuItems(dictionary);
     const embedItems: EmbedDescriptor[] = [];
 
     for (const embed of embeds) {
@@ -411,12 +420,12 @@ class BlockMenu extends React.Component<Props, State> {
 
     const filtered = items.filter(item => {
       if (item.name === "separator") return true;
-
       // Some extensions may be disabled, remove corresponding menu items
       if (
         item.name &&
         !commands[item.name] &&
-        !commands[`create${capitalize(item.name)}`]
+        !commands[`create${capitalize(item.name)}`] &&
+        !item.onClick
       ) {
         return false;
       }

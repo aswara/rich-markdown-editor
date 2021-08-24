@@ -25,6 +25,7 @@ export default {
   },
 } as Meta;
 
+
 const Template: Story<Props> = args => <Editor {...args} />;
 
 export const Default = Template.bind({});

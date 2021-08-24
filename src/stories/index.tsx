@@ -61,8 +61,7 @@ const embeds = [
   {
     title: "YouTube",
     keywords: "youtube video tube google",
-    defaultHidden: true,
-    // eslint-disable-next-line react/display-name
+    defaultHidden: false,
     icon: () => (
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_squircle_%282017%29.svg"
@@ -125,8 +124,9 @@ export default function Example(props) {
             setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
           });
         }}
-        embeds={embeds}
         {...props}
+        embeds={embeds}
+        disableExtensions={["table"]}
       />
     </div>
   );

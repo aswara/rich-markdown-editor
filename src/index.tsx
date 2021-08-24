@@ -16,7 +16,7 @@ import { light as lightTheme, dark as darkTheme } from "./theme";
 import baseDictionary from "./dictionary";
 import Flex from "./components/Flex";
 import { SearchResult } from "./components/LinkEditor";
-import { EmbedDescriptor, ToastType } from "./types";
+import { EmbedDescriptor, MenuItem, ToastType } from "./types";
 import SelectionToolbar from "./components/SelectionToolbar";
 import BlockMenu from "./components/BlockMenu";
 import LinkToolbar from "./components/LinkToolbar";
@@ -145,6 +145,7 @@ export type Props = {
   tooltip: typeof React.Component | React.FC<any>;
   className?: string;
   style?: React.CSSProperties;
+  blocks?: MenuItem[];
 };
 
 type State = {
@@ -774,6 +775,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   onImageUploadStop={this.props.onImageUploadStop}
                   onShowToast={this.props.onShowToast}
                   embeds={this.props.embeds}
+                  blocks={this.props.blocks}
                 />
               </React.Fragment>
             )}
