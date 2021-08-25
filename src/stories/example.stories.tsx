@@ -56,17 +56,19 @@ export const ExampleEditor = () => (
         ),
         shortcut: "^ ⇧ 2",
         attrs: { level: 1 },
-        onClick: ({ commands }) => {
-          commands["embed"]({
-            href: "https://www.youtube.com/watch?v=Krg0COv_Xb8",
-            matches: url => {
-              return url.match(
-                /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([a-zA-Z0-9_-]{11})$/i
-              );
-            },
-            component: YoutubeEmbed,
-          });
+        onClick: ({ commands, ref }) => {
+          console.log(ref)
+          // commands["embed"]({
+          //   href: "https://www.youtube.com/watch?v=Krg0COv_Xb8",
+          //   matches: url => {
+          //     return url.match(
+          //       /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([a-zA-Z0-9_-]{11})$/i
+          //     );
+          //   },
+          //   component: YoutubeEmbed,
+          // });
         },
+
       },
     ]}
   />

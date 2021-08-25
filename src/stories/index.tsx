@@ -61,7 +61,6 @@ const embeds = [
   {
     title: "YouTube",
     keywords: "youtube video tube google",
-    defaultHidden: false,
     icon: () => (
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_squircle_%282017%29.svg"
@@ -126,7 +125,6 @@ export default function Example(props) {
         }}
         {...props}
         embeds={embeds}
-        disableExtensions={["table"]}
       />
     </div>
   );

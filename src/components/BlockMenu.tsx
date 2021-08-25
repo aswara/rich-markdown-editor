@@ -292,10 +292,8 @@ class BlockMenu extends React.Component<Props, State> {
   insertBlock(item) {
     this.clearSearch();
 
-    console.log(item)
-
     if (item.onClick) {
-      item.onClick({ commands: this.props.commands });
+      item.onClick({ commands: this.props.commands, item, ref: this.menuRef });
     } else {
       const command = this.props.commands[item.name];
       if (command) {
@@ -397,8 +395,8 @@ class BlockMenu extends React.Component<Props, State> {
       uploadImage,
       commands,
     } = this.props;
-    let items: (EmbedDescriptor | MenuItem)[] = this.props.blocks
-      ? this.props.blocks
+    let items: (EmbedDescriptor | MenuItem)[] = Array.isArray(this.props.blocks)
+      ? [...this.props.blocks]
       : getMenuItems(dictionary);
     const embedItems: EmbedDescriptor[] = [];
 

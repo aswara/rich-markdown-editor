@@ -17,7 +17,11 @@ export type MenuItem = {
   attrs?: Record<string, any>;
   visible?: boolean;
   active?: (state: EditorState) => boolean;
-  onClick?: (data: { commands: Record<string, any>; item: any }) => void;
+  onClick?: (data: {
+    commands: Record<string, any>;
+    item: any;
+    ref: React.RefObject<HTMLInputElement>;
+  }) => void;
 };
 
 export type EmbedDescriptor = MenuItem & {
